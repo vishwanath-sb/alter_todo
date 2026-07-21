@@ -67,6 +67,13 @@ def list_todos():
     return [dict(row) for row in rows]
 
 
+@app.get("/todos/completed")
+def list_todos_completed():
+    conn = get_db()
+    rows = conn.execute("SELECT * FROM todos WHERE completed = '1'").fetchall()
+    conn.close()
+    return [dict(row) for row in rows]
+
 @app.get("/todos/{todo_id}")
 def get_todo(todo_id: int):
     conn = get_db()
