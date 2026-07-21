@@ -74,6 +74,7 @@ def list_todos_completed():
     conn.close()
     return [dict(row) for row in rows]
 
+
 @app.get("/todos/{todo_id}")
 def get_todo(todo_id: int):
     conn = get_db()
